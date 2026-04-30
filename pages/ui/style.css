@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap');
+:root {
+  --bg:#1a1d24; --card:#22262f; --s2:#2a2f3a; --b:#363d4d;
+  --t:#b8c0d0; --t2:#5a6478;
+  --ok:#42e898; --wr:#f0a030; --er:#ff4466; --cr:#ff2244;
+  --ig:#38b5f9; --ign:#d4a94a; --lav:#a080ff;
+  --wh:#e8f0ff;
+}
+* { margin:0; box-sizing:border-box; font-family:'IBM Plex Mono',monospace; }
+body { background:var(--bg); color:var(--t); height:100vh; overflow:hidden;
+  display:grid; grid-template:'H H H'36px 'W M E'1fr 'A A A'28px 'S S S'24px / 200px 1fr 220px; gap:1px; }
+.H { grid-area:H; background:#101520; border-bottom:1px solid var(--b);
+     display:flex; align-items:center; padding:0 10px; gap:6px; }
+.W { grid-area:W; background:var(--card); border-right:1px solid var(--b); overflow-y:auto; font-size:8px; }
+.M { grid-area:M; background:var(--bg); overflow:auto; padding:8px; }
+.E { grid-area:E; background:var(--card); border-left:1px solid var(--b); overflow-y:auto; font-size:8px; }
+.A { grid-area:A; background:#1c1014; border-top:1px solid var(--er); overflow:hidden; font-size:8px;
+     display:flex; align-items:center; padding:0 8px; gap:4px; }
+.S { grid-area:S; background:#101520; border-top:1px solid var(--b);
+     display:flex; align-items:center; padding:0 8px; gap:4px; font-size:7px; }
