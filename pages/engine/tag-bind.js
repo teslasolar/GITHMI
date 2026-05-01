@@ -1,11 +1,12 @@
-// tag-bind.js — fetch tag values from GitPLC GitHub Issues
+// tag-bind.js — fetch tag values from GitTAG GitHub Issues
 var HMI_TAGS = { tags:{}, ts:0 };
-var PLC_OWNER = 'teslasolar';
-var PLC_REPO = 'GITPLC';
+var TAG_OWNER = 'teslasolar';
+var TAG_REPO = 'GITTAG';
+var TAG_LABEL = 'gittag';
 
 async function fetchTags() {
   try {
-    var url = 'https://api.github.com/repos/'+PLC_OWNER+'/'+PLC_REPO+'/issues?labels=gitplc-config&per_page=100&state=open';
+    var url = 'https://api.github.com/repos/'+TAG_OWNER+'/'+TAG_REPO+'/issues?labels='+TAG_LABEL+'&per_page=100&state=open';
     var r = await fetch(url);
     var issues = await r.json();
     if (!Array.isArray(issues)) return 0;
@@ -14,7 +15,8 @@ async function fetchTags() {
       if (m) {
         try {
           var obj = JSON.parse(m[1]);
-          if (obj.tag_id) HMI_TAGS.tags[obj.tag_id] = obj;
+          var id = obj.tag_path || obj.tag_id || iss.title;
+          HMI_TAGS.tags[id] = obj;
         } catch(e) {}
       }
     });
